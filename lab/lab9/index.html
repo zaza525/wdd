@@ -1,0 +1,125 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>WDD Lab 9</title>
+    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+	<style type="text/css"></style>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<div id="header-caption">
+				<div id="header-caption-logo"><img class="img-scaled" src="assets/images/logo.png" /></div>
+				<div id="header-caption-name">Web Design DeCal</div>
+				<div class="clear"></div>
+			</div>
+			<div id="header-content">
+				<!-- ASSIGNMENT NAME -->
+				<div id="header-title">Lab 9</div>
+				<!-- DUE DATE -->
+				<div id="header-due">April 9</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="info">
+				<!-- ASSIGNMENT TITLE -->
+				<div class="info-title">Building an Etch A Sketch</div>
+				<div class="info-content">
+					<!-- REQUIRED TOOLS -->
+					<div class="info-required">Required Tools: Google Chrome, Internet, & the Web Inspector</div>
+					<!-- INTRODUCTION -->
+					<div class="info-intro">JavaScript powers a lot of interactions on the web interface. Let's apply some concepts from this week to draw something impressive.</div>
+				</div>
+			</div>
+			<div class="body">
+				<div class="body-header">Assignment</div>
+				<!-- CONTENT -->
+
+				<!-- Styled Tags; P, UL, LI, .caption, A, IMG-->
+				<!-- Add P Tags for each paragraph -->
+				<!-- Use UL LI Tags for each lists -->
+				<!-- Use P Tags with "caption" class for paragraph captions (60% opacity) -->
+				<!-- Use IMG Tags for images -->
+				<p class="caption">You can download the assignment file here:</p>
+				<a href="lab9.zip"><div class="download">Download File</div></a>
+
+				<p>This is what our sketch pad <em>may</em> look like:</p>
+				<img src="assets/images/final.gif" />
+
+				<p>Right now, you should just see a blank page with a color picker at the top left.</p>
+
+				<div class="body-header">Step 0: Create variables for the DOM elements</div>
+
+				<p>We'll only be modifying <code>assets/scripts/main.js</code> for this hands-on. It may feel a little overwhelming to see the starter code; however, <strong>mostly each part only requires one line of code</strong> (well, at most two, unless you're feeling fancy and would like to code more).</p>
+
+				<p>When you open <code>main.js</code>, you should see at the top that there are 3 different variables called <code>canvas</code>, <code>content</code>, and <code>colorPicker</code>.</p>
+
+				<ol>
+					<li>
+						<p></p>Let's set the <code>canvas</code> element to have the value of the DOM element corresponding to the canvas in our <code>index.html</code> page. For a refresher on how to do this, please refer to the lecture slides on the function <code>document.getElementById()</code>.
+						<p>Hint: the format of this line of code should look like <code>canvas = [your element here];</code>. This line should go right before <code>context = canvas.getContext("2d");</code></p>
+					</li>
+					<li>Now let's do the same for <code>colorPicker</code>, and have it hold the value of the <code>color-picker</code>input field.</li>
+				</ol>
+
+				<div class="body-header">Step 1: Draw some circles following the mouse</div>
+
+				<p>Let's take a look at the <code>mouseMove()</code> function and remind ourselves that it will run every time browser sees the mouse moves on the canvas. While the browser runs the function, it also provides us with an <code>event</code> loaded with information like mouse positions that we can get with <code>event.clientX</code> and <code>event.clientY</code>.</p>
+
+				<p>We've provided you with two functions <code>fillCircle()</code> to draw a solid circle and <code>strokeCircle()</code> to draw a circle outline. Both of these helper functions take in 2 required arguments, the x and y positions. Later, we will see how we can call these functions with an additional 3rd argument, radius. If you'd like to see how these functions work, you can read the code at the bottom of the file, but you don't need to understand that code to complete the lab.</code></p>
+
+				<p>In the section labeled as <code>STEP 1</code>, write the two lines of code for this part. You should be using the mouse positions mentioned above, and calling the two functions that we also described above.</p>
+
+				<p>Now some painting should appear under your mouse cursor!</p>
+
+				<img src="assets/images/step-1.png">
+
+				<div class="body-header">Step 2: Change up some colors</div>
+
+				<p>It would be more visually exciting if we can vary the color being drawn on the canvas!</p>
+
+				<p><strong>Part 1:</strong> Store the value from the color picker in a variable named <code>color</code>. Recall that the color picker element is what you defined in <code>STEP 1</code>. How can you get the value from it?</p>
+
+				<p><strong>Part 2:</strong> Set the fill color and the stroke color of the canvas with <code>context.fillStyle</code> and <code>context.strokeStyle</code> to the value of <code>color</code>.</p>
+
+				<p>Look for "STEP 2" in the code comments to make your changes. You should have 3 new lines of code for this entire step.</p>
+
+				<p>Now you can pick a new color and you should be able to draw with the new color.</p>
+
+				<img src="assets/images/step-2-1.png">
+
+				<img src="assets/images/step-2-2.png">
+
+				<div class="body-header">Step 3: Fun Radius Functions</div>
+
+				<p>So far all the circles we've been drawing have a uniform radius, would it be awesome if they change up a little?</p>
+
+				<p><strong>Part 1:</strong> Imagine the radius of the circles change over time. Let's add a variable called <code>counter</code> which is a number that will increment every time the mouse moves. In addition, let's set the <code>counter</code> to increment by 1 every time <code>mouseMove</code> is called.</p>
+
+				<p><strong>Part 2:</strong> Let's come back to the drawing section we did earlier in part 1. The <code>fillCircle()</code> and <code>strokeCircle()</code> has a third (optional) argument that specifies the radius, so that we can run <code>fillCircle(40, 20, 8)</code> to draw a circle at the coordinates (40px, 20px) with a radius of 8px. Let's create a new variable <code>radius</code> to hold the circle radius with the value returned from <code>radiusFunction1()</code> and see what result it gives us. Use the counter variable created in part 1 as the argument for <code>radiusFunction1</code>.</p>
+
+				<p><strong>Part 3:</strong> In order to use the new radius variable, we need to use it as the 3rd argument when calling the functions <code>fillCircle()</code> and <code>strokeCircle()</code>. Go back to the <code>STEP 1</code> section, and modify the code to reflect this change. </p>
+
+				<p>With <code>radiusFunction1()</code>, you may get a similar effect as shown below,</p>
+
+				<img src="assets/images/step-3.png">
+
+				<div class="body-header">Step 4: That's all folks!</div>
+
+				<p>You've reached the end of the lab! However, do check out the other <code>radiusFunction?()</code> which will give some different effects. Notice that these functions share similar parameters; you'll only need to change the function name without tweaking the arguments to see the different looks. If you're super interested in playing a little more, you should try to experiment and write your own radius functions!</p>
+
+				<img src="assets/images/step-4.png">
+
+			</div>
+		</div>
+		<div id="submission">
+			<div id="submission-header">Submission</div>
+			<div id="submission-content">
+				<p>Please make sure you've done all of the tasks before entering the attendance word like how an actual lab would be! Your attendance word is: <strong>tortor</strong>.</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
